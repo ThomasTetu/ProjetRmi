@@ -17,7 +17,7 @@ public class ObjetDistant extends UnicastRemoteObject implements Distante{
     private static final String IP = "localhost";
     private static  Service serviceReference;
 
-    protected ObjetDistant() throws RemoteException {
+    public ObjetDistant() throws RemoteException {
         super();
     }
 
