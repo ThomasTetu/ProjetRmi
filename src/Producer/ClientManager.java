@@ -11,10 +11,10 @@ import java.util.List;
 /**
  * Created by ttetu on 17/04/2018.
  */
-public class ClientManager extends UnicastRemoteObject{
+public class ClientManager extends UnicastRemoteObject implements Manager{
 
     private List<Hook> hooks = new ArrayList<>();
-    protected ClientManager() throws RemoteException {
+    public ClientManager() throws RemoteException {
     }
 
     public void bikrave(String matos){

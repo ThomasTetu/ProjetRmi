@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 /**
  * Created by ttetu on 17/04/2018.
@@ -18,7 +19,9 @@ public class Bikraveur {
         try{
             ClientManager server = new ClientManager();
             LocateRegistry.createRegistry(1099);
-            String url = "rmi://"+IP+"/Bikraveur";
+            Registry r = LocateRegistry.getRegistry();
+            r.bind("ClientManager",server);
+            String url = "rmi://"+IP+"/ClientManager";
             Naming.rebind(url,server);
             System.out.println("On est la, rdy pour visser tu le c !");
 
@@ -35,12 +38,9 @@ public class Bikraveur {
                 }
             }
         }catch (Exception e){
-
             e.printStackTrace();
             System.err.println("Y'a les hendeks !");
         }
     }
-
-
 
 }

@@ -2,6 +2,7 @@ package Consumer;
 
 import Producer.Bikraveur;
 import Producer.ClientManager;
+import Producer.Manager;
 import common.Hook;
 
 import java.net.MalformedURLException;
@@ -16,11 +17,13 @@ public class Yencli {
 
     private static final String IP = "localhost";
 
+    private Yencli() {}
+
     public static void main(String[] args) throws RemoteException, NotBoundException, MalformedURLException {
-        ClientManager server = null;
+        Manager server;
 
         try{
-            server = (ClientManager) Naming.lookup("rmi://"+IP+"/Bikraveur");
+            server = (Manager) Naming.lookup("rmi://"+IP+"/ClientManager");
             System.out.println("T'es en bas des blocs !");
             Hook hook = new ClientHook();
             server.subscribe(hook);
