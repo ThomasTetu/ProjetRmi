@@ -1,6 +1,6 @@
 package Producer;
 
-import common.Hook;
+import Consumer.Hook;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

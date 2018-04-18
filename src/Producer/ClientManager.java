@@ -1,6 +1,6 @@
 package Producer;
 
-import common.Hook;
+import Consumer.Hook;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -14,10 +14,10 @@ import java.util.List;
 public class ClientManager extends UnicastRemoteObject implements Manager{
 
     private List<Hook> hooks = new ArrayList<>();
-    public ClientManager() throws RemoteException {
+    ClientManager() throws RemoteException {
     }
 
-    public void bikrave(String matos){
+    public void bikrave(String matos) throws RemoteException {
         Iterator i = hooks.iterator();
         while (i.hasNext()){
             ((Hook) i.next()).tema(matos);

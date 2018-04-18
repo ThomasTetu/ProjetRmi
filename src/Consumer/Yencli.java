@@ -1,9 +1,6 @@
 package Consumer;
 
-import Producer.Bikraveur;
-import Producer.ClientManager;
 import Producer.Manager;
-import common.Hook;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
