@@ -12,7 +12,7 @@ public class ClientHook extends UnicastRemoteObject implements Hook, Serializabl
     }
 
     @Override
-    public void tema(String matos) throws RemoteException {
-        System.out.println(matos);
+    public void push(String s) throws RemoteException {
+        System.out.println(s);
     }
 }

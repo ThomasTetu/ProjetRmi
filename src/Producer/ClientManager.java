@@ -17,21 +17,21 @@ public class ClientManager extends UnicastRemoteObject implements Manager{
     ClientManager() throws RemoteException {
     }
 
-    public void bikrave(String matos) throws RemoteException {
+    public void sayToAll(String s) throws RemoteException {
         Iterator i = hooks.iterator();
         while (i.hasNext()){
-            ((Hook) i.next()).tema(matos);
+            ((Hook) i.next()).push(s);
         }
     }
 
     public void subscribe(Hook iencli) throws RemoteException{
         this.hooks.add(iencli);
-        System.out.println("Le iencli est la !");
+        System.out.println("A client joined");
     }
 
     public void unSubscribe(Hook iencli) throws RemoteException{
         this.hooks.remove(iencli);
-        System.out.println("Le iencli est tipar !");
+        System.out.println("A client left");
     }
 
 }

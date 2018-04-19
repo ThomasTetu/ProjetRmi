@@ -11,7 +11,7 @@ import java.rmi.registry.Registry;
 /**
  * Created by ttetu on 17/04/2018.
  */
-public class Bikraveur {
+public class Server {
 
     private static final String IP = "localhost";
 
@@ -23,23 +23,22 @@ public class Bikraveur {
             r.bind("ClientManager",server);
             String url = "rmi://"+IP+"/ClientManager";
             Naming.rebind(url,server);
-            System.out.println("On est la, rdy pour visser tu le c !");
+            System.out.println("Ready to stream... Waiting for clients to join");
 
             while(true){
                 FileReader input = new FileReader("src/datasource.txt");
 
                 BufferedReader bufRead = new BufferedReader(input);
-                String ligneDeC = null;
+                String line = null;
 
-                while ( (ligneDeC = bufRead.readLine()) != null)
+                while ( (line = bufRead.readLine()) != null)
                 {
-                    server.bikrave(ligneDeC);
-                    Thread.sleep(1000);
+                    server.sayToAll(line);
+                    Thread.sleep(2000);
                 }
             }
         }catch (Exception e){
             e.printStackTrace();
-            System.err.println("Y'a les hendeks !");
         }
     }
 

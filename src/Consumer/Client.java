@@ -10,23 +10,23 @@ import java.rmi.RemoteException;
 /**
  * Created by ttetu on 17/04/2018.
  */
-public class Yencli {
+public class Client {
 
     private static final String IP = "localhost";
 
-    private Yencli() {}
+    private Client() {}
 
     public static void main(String[] args) throws RemoteException, NotBoundException, MalformedURLException {
         Manager server;
 
         try{
             server = (Manager) Naming.lookup("rmi://"+IP+"/ClientManager");
-            System.out.println("T'es en bas des blocs !");
+            System.out.println("Subscribing to server...");
             Hook hook = new ClientHook();
             server.subscribe(hook);
+            System.out.println("Ready to receive data");
         }catch (Exception e){
             e.printStackTrace();
-            System.err.println("Y'a les hendeks !");
         }
     }
 }
