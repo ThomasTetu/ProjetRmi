@@ -4,29 +4,30 @@ import Consumer.Hook;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
-/**
- * Created by ttetu on 17/04/2018.
- */
+
 public class ClientManager extends UnicastRemoteObject implements Manager{
 
-    private List<Hook> hooks = new ArrayList<>();
+    private Map<Integer,Hook> hooks;
     ClientManager() throws RemoteException {
+        hooks = new HashMap<>();
     }
 
     public void sayToAll(String s) throws RemoteException {
-        Iterator i = hooks.iterator();
-        while (i.hasNext()){
-            ((Hook) i.next()).push(s);
+
+        for (Map.Entry<Integer, Hook> pair : hooks.entrySet()) {
+            pair.getValue().push(s);
         }
     }
 
     public void subscribe(Hook iencli) throws RemoteException{
-        this.hooks.add(iencli);
-        System.out.println("A client joined");
+        Random r = new Random();
+        int id = r.nextInt(1000000)+1;
+        while(hooks.containsKey(id)) id = r.nextInt();
+
+        this.hooks.put(id,iencli);
+        System.out.println("A client joined (id : "+id+")");
     }
 
     public void unSubscribe(Hook iencli) throws RemoteException{
